@@ -27,7 +27,7 @@ cat /etc/shells
 可以看到，zsh已经被正确安装了
 
 
-### 使用oh-my-zsh
+### 安装oh-my-zsh
 
 zsh虽然好用，但配置起来还比较麻烦，不过幸运的是，已经有大神给我们配置好了一个很棒的框架：[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，我们只需要安装使用就可以了，一条命令搞定：
 ```bash
