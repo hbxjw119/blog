@@ -3,26 +3,23 @@ title:
 date: 2016-08-17 21:03:08
 ---
 
-# 个人简介
-许基伟
-　　IT，互联网，开发，测试，前后端均有涉猎，Python，PHP，JavaScript，Vim爱好者
-　　本科重庆邮电大学，硕士电子科技大学，通信专业，半路出家学习CS技术
-　　来自湖北，现在在北京奇虎360，做搜索相关的平台和工具开发
-　　喜欢户外，骑行上万里，登山平均海拔4千米
+## 关于
+
+* IT，互联网，开发，测试，前后端均有涉猎，Python，PHP，JavaScript，Vim爱好者
+* 喜欢户外，轮滑，吉他
+* COD,AC忠实爱好者
 
 
 
+* 邮箱：<mailto:hbxjw2009@126.com> 
+* Github：[@hbxjw119](https://github.com/hbxjw119)
+* 微博：[@基伟OnTheWay](http://weibo.com/hbxjw119/home)
 
-# 邮箱 
-　　hbxjw2009@gmail.com
+## 历史
 
-# 关于本站
+* 搭建于2015年8月，托管于Github
+* 2016年8月由jekyll迁到Hexo
+* 2017年7月同时托管于Github和coding
+* 2017年8月换主题maupassant
 
-　　该博客搭建于2015年8月，托管于Github,欢迎Fork
-　　2016年8月由jekyll迁到Hexo
 
-# 其他
-
-　　未女昏人士
-　　电影，轮滑，户外，吉他
-　　单机游戏COD,AC忠实爱好者

@@ -7,7 +7,7 @@ title: Jimmy_Xu的小站
 subtitle:
 description: 记录个人的工作，生活，感悟...
 author: jimmyxu
-language: zh-Hans
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
@@ -63,13 +63,15 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: maupassant
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:hbxjw119/hbxjw119.github.io
+  repository: 
+    coding: git@git.coding.net:zuiye111/zuiye111.coding.me.git
+    github: git@github.com:hbxjw119/hbxjw119.github.io
   branch: master
 
 since: 2015
