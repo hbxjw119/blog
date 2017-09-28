@@ -2,7 +2,7 @@
 title: 由daemon账户到ssh免密登录的一点思考
 date: 2016-08-12 09:14:35
 tags: [python, monitor, php]
-category: [python, php]
+category: [monitor]
 ---
 
 最近项目上遇到一个这样的场景：

@@ -2,7 +2,7 @@
 title: PHP中的自动加载
 date: 2017-01-08 09:14:35
 tags: [linux, php]
-category: [linux, php]
+category: [php]
 ---
 
 对于21世纪的phper来说，应该或多或少听说过**自动加载器**。自动加载，就是我们在new一个class前，不需要写require来包含这个class文件，由程序自动帮我们加载进来。

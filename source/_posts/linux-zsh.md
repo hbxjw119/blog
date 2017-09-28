@@ -2,7 +2,7 @@
 title: 使用zsh，重新打造你的Linux工作环境
 date: 2017-06-20 19:14:35
 tags: [linux, zsh]
-category: [linux, zsh]
+category: [zsh]
 ---
 
 对于经常在Linux环境下干活的码农们，shell可以说是我们使用频率最高的程序了，shell为我们和机器间建立了一个桥梁，它给我们提供一系列命令，我们就可以和机器进行愉快的交流了，比如写代码用`vim`命令，查找文件使用`find`,`grep`命令，版本控制使用`git`，查看机器性能使用`top`，bash就是shell的一种，也是Linux下的默认shell程序，现在让我们使用zsh，重新打造一个更加人性化的shell

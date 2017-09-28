@@ -2,7 +2,7 @@
 title: 用正则方式批量删除redis里的key
 date: 2016-08-11 19:14:35
 tags: [Linux, xargs, redis]
-category: [shell]
+category: [redis]
 ---
 
 redis里面有一批没用的key，这些key以test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面xargs命令的方式

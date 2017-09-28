@@ -2,7 +2,7 @@
 title: dokcer的一些使用方法
 date: 2017-04-10 16:20:35
 tags: [docker, linux]
-category: [docker, linux]
+category: [docker]
 ---
 
 上半年也陆续使用了docker工具做开发部署，使用的经验还比较浅显，看到屈屈大神写的一篇文章不错，特转载过来，并加了点自己的心得

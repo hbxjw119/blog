@@ -2,7 +2,7 @@
 title: PHP中的依赖注入是什么东西
 date: 2017-01-02 19:14:35
 tags: [php, design pattern]
-category: [pattern, php]
+category: [php]
 ---
 
 设计模式中，有一个叫控制反转（Inversion of Control），也叫依赖注入(Dependency Injection)，这种设计模式用来减少程序间的耦合，这篇文章不讲解概念性的东西，直接上代码，如果要深追理论，要看设计模式一书

@@ -2,7 +2,7 @@
 title: 手动编译安装nginx
 date: 2017-08-20 19:14:35
 tags: [linux, nginx]
-category: [linux, nginx]
+category: [nginx]
 ---
 
 [Nginx](https://nginx.org/)是一个高性能的HTTP和反向代理服务器，目前已经成为Web开发部署的标配了，基本拿到一台机器或者vps，都要装上nginx，但由于很多Linux发行版的包管理里面的源没有nginx，导致用`yum`或者`apt`都无法安装，需要手动配置，这里记录两种方法安装nginx
