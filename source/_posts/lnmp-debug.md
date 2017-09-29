@@ -10,12 +10,13 @@ category: [lnmp]
 
 
 我安装好lnmp环境后，启动一个简单的php框架项目时，却报错，错误如下图所示
+![报错log](/images/error-log.jpg)
 大意就是web目录被限制，不能访问。查了下php.ini，里面并没有配置`open_basedir`选项，按理说应该没问题。找了很久都没有找到是在哪里配置了这个。最后[grep](http://www.xujimmy.com/blog/2016/11/16/linux-grep.html)了下,发现是在装lnmp时，一键安装脚本自作主张，在两个地方，设置了该配置:
-* 脚本在web根目录新建了个`.user.ini`的隐藏文件，里面配置了`open_basedir=`。
-* 另外一个是在nginx的fastcgi.conf中，配置了一个变量，如下：
-```
+1. 脚本在web根目录新建了个`.user.ini`的隐藏文件，里面配置了`open_basedir`，如图：
+![user.ini](/images/user-ini.jpg)
+2. 另外一个是在nginx的fastcgi.conf中，配置了一个变量，如下：
+![fastcgi.conf](/images/fastcgi-conf.jpg)
 
-```
 正因为这两个配置，导致出现开头所见的问题。
 
 解决办法就是去掉这两个配置，删第二个地方的配置简单，直接删除`open_basedir`那行，然后重启fpm和nginx即可。第一个地方删除.user.ini文件时比较奇怪，我直接用root账户去删，仍然提示无权限，google查了下，发现是文件属性被改变了，具体点就是用`chattr`命令改变文件或目录的属性，使之不得以任意方式删除或更新。哪怕是root用户，这个跟`chmod`命令改变文件权限功能类似，`chmod`命令只是改变文件的读写、执行权限，而`chattr`命令则是更彻底的改变文件属性。`chattr`使用方式如下：
@@ -61,9 +62,9 @@ lsattr .user.ini
 ```
 返回
 ```
-----i-------- .user.ini
+----i------e- .user.ini
 ```
-看到文件缺失是被锁定了，修改如下
+看到文件确实是被锁定了，修改如下
 ```
 chattr -i .user.ini
 ```
