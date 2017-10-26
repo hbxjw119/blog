@@ -8,28 +8,32 @@ category: [shell]
 linux命令行中，最常用的命令就那么几条，有时写了长长的一条命令，发现写错、漏写，想移动光标，如果直接按←，→，不仅慢，还不能体现出我们作为linux老鸟的优（zhuang）雅（bi），因此记下几个比较好用的命令，拿好
 <!--more-->
 
-* CTRL + U – 剪切光标前的内容
+* ctrl + u – 剪切光标前的内容
+这个命令很有用，加入你在终端输入一个很长的命令，想删掉，一个一个字删除就很慢了，直接用ctrl+u搞定吧~
 
-* CTRL + K – 剪切光标至行末的内容
+* ctrl + r — 在历史命令中查找
+也强烈推荐，有时想输入之前的某条命令，以前做法是 `history | grep command`，现在直接用ctrl + r，然后输入关键字，shell就自动给你搜索包含关键字的命令了。
 
-* CTRL + Y – 粘贴
+* ctrl + k – 剪切光标至行末的内容
 
-* CTRL + E – 移动光标到行末
+* ctrl + k – 粘贴
 
-* CTRL + A – 移动光标到行首
+* ctrl + e – 移动光标到行末
 
-* ALT + F – 跳向下一个空格
+* ctrl + a – 移动光标到行首
 
-* ALT + B – 跳回上一个空格
+* alt + f – 跳向下一个空格
 
-* ALT + Backspace – 删除前一个单词
+* alt + b – 跳回上一个空格
 
-* CTRL + W – 剪切光标后一个单词
+* alt + Backspace – 删除前一个单词
+
+* ctrl + w – 剪切光标后一个单词
 
 * Shift + Insert – 向终端内粘贴文本
 
-* CTRL + L - 清屏
+* ctrl + l - 清屏
 
-* CTRL + D – 登出，替代exit或者logout命令
+* ctrl + d – 登出，替代exit或者logout命令
 
 * !num - 执行历史命令列表中的第num条命令
