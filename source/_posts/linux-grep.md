@@ -1,6 +1,6 @@
 ---
 title: linux命令之--grep
-date: 2016-011-16 09:14:35
+date: 2016-11-16 09:14:35
 tags: [linux, grep]
 category: [shell]
 ---
