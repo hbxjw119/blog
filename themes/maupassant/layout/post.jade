@@ -6,7 +6,7 @@ block title
 block content
   .post
     h1.post-title= page.title
-    .post-meta= page.date.format('ll')
+    .post-meta= page.date.format('YYYY 年 MM 月 DD 日')
       if page.categories.length > 0
         span= ' | '
         span.category
@@ -17,6 +17,8 @@ block content
         span#busuanzi_container_page_pv= ' | '
           span#busuanzi_value_page_pv
           span= ' ' + __('Hits')
+          span.post-count=' | 本文 ' + wordcount(page.content) + ' 字' 
+          span.post-count=' | 阅读约需 ' + min2read(page.content) + ' 分钟' 
     if theme.disqus
       a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
     if theme.changyan
