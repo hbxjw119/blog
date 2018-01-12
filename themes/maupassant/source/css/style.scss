@@ -916,10 +916,6 @@ figure.highlight,
         background:   #f7f8f8;
         border-right: 1px solid #e6e6e6;
         padding:      0.3em 15px;
-
-        .line {
-            color: #aaaaaa;
-        }
     }
     // Code container
     .code {
@@ -1082,15 +1078,15 @@ figure.highlight,
     &.diff .code {
         .chunk,
         .meta {
-            color:       #795da3;
+            color: #795da3;
             font-weight: bold;
         }
         .addition {
-            color:            #55a532;
+            color: #55a532;
             background-color: #eaffea;
         }
         .deletion {
-            color:            #bd2c00;
+            color: #bd2c00;
             background-color: #ffecec;
         }
     }
@@ -1313,7 +1309,8 @@ figure.highlight,
         }
     }
     // XML, HTML
-    &.xml {
+    &.xml,
+    &.html {
         .tag {
             color: #333;
         }
@@ -1508,14 +1505,14 @@ figure.highlight,
 
 /* article-footer-copyright */
 .article-footer-copyright {
-	margin-top: 0em;
-	padding: 0.8em;
+    margin-top: 0em;
+    padding: 0.8em;
     margin-bottom: 1em;
     border: 1px solid #ddd;
     background-color: #f8f8f8;
 }
 .article-footer-copyright a {
-	color: #01579f
+    color: #01579f
 }
 
 /* toc*/

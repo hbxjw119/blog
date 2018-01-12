@@ -44,11 +44,11 @@ if theme.disqus
           $('.btn_click_load').css('display','block');
         }
       });
-    script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)
+    script(id='dsq-count-scr', src='//'+ theme.disqus + '.disqus.com/count.js', async)
 
 if theme.uyan
   #uyan_frame
-  script(type='text/javascript' src='http://v2.uyan.cc/code/uyan.js?uid=#{theme.uyan}')
+  script(type='text/javascript' src='//v2.uyan.cc/code/uyan.js?uid=' + theme.uyan)
 
 if theme.changyan
   div#SOHUCS(sid=page.date.valueOf())
@@ -56,7 +56,7 @@ if theme.changyan
     (function(){var appid='#{theme.changyan}';var conf='#{theme.changyan_conf}';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>')}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})})}})()
 
 if theme.livere
-  div(id='lv-container' data-id='city' data-uid='#{theme.livere}')
+  div(id='lv-container' data-id='city' data-uid=theme.livere)
     script.
       (function(d, s) {
          var j, e = d.getElementsByTagName(s)[0];
@@ -66,3 +66,27 @@ if theme.livere
          j.async = true;
          e.parentNode.insertBefore(j, e);
       })(document, 'script');
+
+if theme.valine.enable == true
+    #vcomment
+    script(src='//cdn1.lncld.net/static/js/3.0.4/av-min.js')
+    script(src='//unpkg.com/valine@latest/dist/Valine.min.js')
+    script.
+      var notify = '#{ theme.valine.notify }' == true ? true : false;
+      var verify = '#{ theme.valine.verify }' == true ? true : false;
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = '#{ theme.valine.guest_info }'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+      });
+      guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+      window.valine = new Valine({
+        el:'#vcomment',
+        notify:notify,
+        verify:verify,
+        appId:'#{theme.valine.appid}',
+        appKey:'#{theme.valine.appkey}',
+        placeholder:'#{theme.valine.placeholder}',
+        avatar:'#{theme.valine.avatar}',
+        guest_info:guest_info,
+        pageSize:'#{theme.valine.pageSize}'
+      })

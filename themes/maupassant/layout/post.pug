@@ -35,6 +35,10 @@ block content
         span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
         span= ' ' + __('Comment')
       script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span 条评论
     if page.toc
       div(class='clear')
         div(id='toc' class='toc-article')
@@ -43,17 +47,16 @@ block content
     .post-content
       != page.content
     if theme.donate.enable == true
-      iframe(src='/donate/?AliPayQR=#{theme.donate.alipay_qr}&WeChatQR=#{theme.donate.wechat_qr}&GitHub=#{theme.donate.github}&BTCQR=#{theme.donate.btc_qr}&BTCKEY=#{theme.donate.btc_key}&PayPal=#{theme.donate.paypal_url}',style='overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;',frameborder='0',scrolling='no')
-
-    if theme.copyright.enable == true
-      include _widget/article_copyright
-
+      iframe(src='/donate/?AliPayQR=' + theme.donate.alipay_qr + '&WeChatQR=' + theme.donate.wechat_qr + '&GitHub=' + theme.donate.github + '&BTCQR=' + theme.donate.btc_qr + '&BTCKEY='+ theme.donate.btc_key + '&PayPal=' + theme.donate.paypal_url, style='overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;', frameborder='0', scrolling='no')
     if theme.shareto == true
       script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
-      a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}', data-qrcode=qrcode(page.permalink))= __('shareto')
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
 
-    include _partial/tag
-    include _partial/post_nav
- 
+    if theme.copyright.enable == true
+      include _widget/article_copyright.pug
+
+    include _partial/tag.pug
+    include _partial/post_nav.pug
+
     if page.comments
-      include _partial/comments
+      include _partial/comments.pug
