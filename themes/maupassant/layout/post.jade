@@ -16,9 +16,18 @@ block content
         script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
         span#busuanzi_container_page_pv= ' | '
           span#busuanzi_value_page_pv
+
+      if theme.wordcount == true
           span= ' ' + __('Hits')
-          span.post-count=' | 本文 ' + wordcount(page.content) + ' 字' 
-          span.post-count=' | 阅读约需 ' + min2read(page.content) + ' 分钟' 
+          span= ' | '
+          span
+            i.fa.fa-file-word-o
+          span.post-count=' ' + wordcount(page.content) + ' 字' 
+          span= ' | '
+          span
+            i.fa.fa-clock-o
+          span.post-count=' 阅读约需 ' + min2read(page.content) + ' 分钟' 
+
     if theme.disqus
       a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
     if theme.changyan
@@ -35,12 +44,16 @@ block content
       != page.content
     if theme.donate.enable == true
       iframe(src='/donate/?AliPayQR=#{theme.donate.alipay_qr}&WeChatQR=#{theme.donate.wechat_qr}&GitHub=#{theme.donate.github}&BTCQR=#{theme.donate.btc_qr}&BTCKEY=#{theme.donate.btc_key}&PayPal=#{theme.donate.paypal_url}',style='overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;',frameborder='0',scrolling='no')
+
+    if theme.copyright.enable == true
+      include _widget/article_copyright
+
     if theme.shareto == true
       script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
       a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}', data-qrcode=qrcode(page.permalink))= __('shareto')
 
     include _partial/tag
     include _partial/post_nav
-
+ 
     if page.comments
       include _partial/comments

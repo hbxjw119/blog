@@ -1506,6 +1506,18 @@ figure.highlight,
     }
 }
 
+/* article-footer-copyright */
+.article-footer-copyright {
+	margin-top: 0em;
+	padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+.article-footer-copyright a {
+	color: #01579f
+}
+
 /* toc*/
 .toc-article {
   border: 1px solid #bbb;

@@ -63,4 +63,11 @@ if page.mathjax2
 
 script(type='text/javascript', src=url_for(theme.js) + '/codeblock-resizer.js' + '?v=' + theme.version)
 script(type='text/javascript', src=url_for(theme.js) + '/smartresize.js' + '?v=' + theme.version)
-script(type='text/javascript', src=url_for(theme.js) + '/leandcnt.js')
+if theme.visitor.enable == true
+    - var app_id=theme.visitor.APP_ID
+    - var app_key=theme.visitor.APP_KEY
+    - var obj_id=theme.visitor.OBJ_ID
+    script(type='text/javascript', src='//xujimmy.oss-cn-beijing.aliyuncs.com/av-min.js')
+    script(type='text/javascript', src=url_for(theme.js) + '/leandcnt.js' + '?v=' + theme.version)
+    script.
+       visitorCount('#{app_id}', '#{app_key}', '#{obj_id}')

@@ -12,8 +12,10 @@ block content
       h1.label-title=  __('reading_label', page.category || page.tag)
   .post
     .post-archive
-        h2= '所有文章'
-          span= '共 31 篇，共 ' + totalcount(site, '0,0') + '字'
+        if page.archive
+          if theme.wordcount
+            h2= '所有文章'
+              span= '共 31 篇，共 ' + totalcount(site, '0,0') + '字'
         //Use lodash to classify posts. See https://lodash.com/docs#groupBy
         each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
           h2= -year

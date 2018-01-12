@@ -21,6 +21,7 @@ show_category_count: true ## If you want to show the count of categories in the 
 toc_number: true ## If you want to add list number to toc please set the value to true.
 shareto: true ## If you want to use the share button please set the value to true, you must have hexo-helper-qrcode installed.
 busuanzi: true ## If you want to use Busuanzi page views please set the value to true.
+wordcount: true ## If you want to count the words of each post, please set the value to true. Make sure you have installed hexo-wordcount plugin
 widgets_on_small_screens: false ## Set to true to enable widgets on small screens.
 canvas_nest:
   enable: false ## If you want to use dynamic background please set the value to true, you can also fill the following parameters to customize the dynamic effect, or just leave them blank to keep the default effect.
@@ -36,6 +37,18 @@ donate:
   btc_qr: ## Path of Bitcoin QRcode image, e.g. /img/BTCQR.png
   btc_key: ## Bitcoin key, e.g. 1KuK5eK2BLsqpsFVXXSBG5wbSAwZVadt6L
   paypal_url: ## Paypal URL, e.g. https://paypal.me/tufu9441
+
+## post copy-right
+copyright: 
+  enable: true
+  author: Jimmy_Xu
+
+## visitor-count
+visitor: 
+  enable: true
+  APP_ID: phNBe6j30h7xFUszRWcBTCIi-gzGzoHsz
+  APP_KEY: 0MKEk5HhPkcT27ogNF4tNhQA
+  OBJ_ID: 5a1e63f58d6d8100628a225e
 
 menu:
   - page: home
@@ -92,4 +105,4 @@ js: js
 css: css
 
 # Theme version
-version: 0.1.0
+version: 0.2.0
