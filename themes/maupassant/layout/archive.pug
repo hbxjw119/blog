@@ -15,11 +15,11 @@ block content
         if page.archive
           if theme.wordcount
             h2= '所有文章'
-              span= '共 31 篇，共 ' + totalcount(site, '0,0') + '字'
+              span= ' 共 ' + site.posts.length + ' 篇，共 ' + totalcount(site, '0,0') + '字'
         //Use lodash to classify posts. See https://lodash.com/docs#groupBy
         each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
           h2= -year
-            span= '共'+posts.length+'篇'
+            span= ' 共 '+ posts.length + ' 篇'
           ul.listing
             for post in posts
               li

@@ -16,9 +16,9 @@ block content
         script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
         span#busuanzi_container_page_pv= ' | '
           span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
 
       if theme.wordcount == true
-          span= ' ' + __('Hits')
           span= ' | '
           span
             i.fa.fa-file-word-o
@@ -52,10 +52,11 @@ block content
       script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
       a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
 
+    include _partial/tag.pug
+
     if theme.copyright.enable == true
       include _widget/article_copyright.pug
 
-    include _partial/tag.pug
     include _partial/post_nav.pug
 
     if page.comments

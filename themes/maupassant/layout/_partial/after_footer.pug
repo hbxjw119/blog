@@ -43,7 +43,7 @@ if theme.baidu_analytics
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = '//hm.baidu.com/hm.js?' + theme.baidu_analytics;
+      hm.src = '//hm.baidu.com/hm.js?#{theme.baidu_analytics}';
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
       })();
@@ -70,4 +70,4 @@ if theme.visitor.enable == true
     script(type='text/javascript', src='//xujimmy.oss-cn-beijing.aliyuncs.com/av-min.js')
     script(type='text/javascript', src=url_for(theme.js) + '/leandcnt.js' + '?v=' + theme.version)
     script.
-       visitorCount(app_id, app_key, obj_id)
+       visitorCount('#{app_id}', '#{app_key}', '#{obj_id}')
