@@ -72,6 +72,10 @@ theme: maupassant
 
 mathjax: true
 
+sitemap:
+  path: sitemap.xml
+##  template: ./sitemap_template.xml
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

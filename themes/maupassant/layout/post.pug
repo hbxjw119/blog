@@ -59,5 +59,12 @@ block content
 
     include _partial/post_nav.pug
 
+    if theme.disqusapi.enable
+      link(rel='stylesheet', type='text/css', href='/disqus/dist/iDisqus.min.css')
+      div#comments
+      script(src='/disqus/dist/iDisqus.min.js')
+      script(src=url_for(theme.js) + '/disqus.js' + '?v=' + theme.version)
+
+
     if page.comments
       include _partial/comments.pug

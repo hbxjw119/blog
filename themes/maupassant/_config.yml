@@ -1,11 +1,15 @@
 fancybox: true ## If you want to use fancybox please set the value to true.
-disqus: jimmyxu ## Your disqus_shortname, e.g. username
+#disqus: jimmyxu ## Your disqus_shortname, e.g. username
+# Disqus
+# Disqus APi
+disqusapi:
+  enable: false
 gitment:
-  enable: false ## If you want to use Gitment comment system please set the value to true.
-  owner: ## Your GitHub ID, e.g. username
-  repo: ## The repository to store your comments, make sure you're the repo's owner, e.g. imsun.github.io
-  client_id: ## GitHub client ID, e.g. 75752dafe7907a897619
-  client_secret: ## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50
+  enable: true ## If you want to use Gitment comment system please set the value to true.
+  owner: hbxjw119 ## Your GitHub ID, e.g. username
+  repo: hbxjw119.github.io ## The repository to store your comments, make sure you're the repo's owner, e.g. imsun.github.io
+  client_id: 6cc8e017eb97ff6696f8 ## GitHub client ID, e.g. 75752dafe7907a897619
+  client_secret: 042c585d7da96a9f11048ec8bdedd79920c00890 ## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50
 uyan: ## Your uyan_id. e.g. 1234567
 livere: ## Your livere data-uid, e.g. MTAyMC8zMDAxOC78NTgz
 changyan: ## Your changyan appid, e.g. cyrALsXc8
@@ -31,7 +35,7 @@ baidu_analytics: b24b1cbb03fdc613791573423619f3e3 ## Your Baidu Analytics tracki
 show_category_count: true ## If you want to show the count of categories in the sidebar widget please set the value to true.
 toc_number: true ## If you want to add list number to toc please set the value to true.
 shareto: true ## If you want to use the share button please set the value to true, you must have hexo-helper-qrcode installed.
-busuanzi: true ## If you want to use Busuanzi page views please set the value to true.
+busuanzi: false ## If you want to use Busuanzi page views please set the value to true.
 wordcount: true ## If you want to count the words of each post, please set the value to true. Make sure you have installed hexo-wordcount plugin
 widgets_on_small_screens: false ## Set to true to enable widgets on small screens.
 canvas_nest:
@@ -116,4 +120,4 @@ js: js
 css: css
 
 # Theme version
-version: 0.2.0
+version: 0.4.0
