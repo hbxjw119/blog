@@ -2,13 +2,14 @@
 title: PHP中的依赖注入是什么东西
 date: 2017-01-02 19:14:35
 tags: [php, design pattern]
-category: [php]
+category: [Tech]
 ---
 
 设计模式中，有一个叫控制反转（Inversion of Control），也叫依赖注入(Dependency Injection)，这种设计模式用来减少程序间的耦合，这篇文章不讲解概念性的东西，直接上代码，如果要深追理论，要看设计模式一书
 <!--more-->
 
-### 业务场景
+## 业务场景
+
 某网站在注册完后，要给用户发封邮件，发邮件的逻辑，你可以这么写：
 ```php
 //Email.class.php
@@ -98,7 +99,8 @@ $reg->doRegister($smsObj);//使用短信发送
 
 上面的代码解决了'Register'对信息发送类的依赖，使用构造函数注入的方法，使得它只依赖于发送短信的接口，只要实现其接口中的'send'方法，不管你怎么发送都可以。上例就使用了"注入"这个思想，就像注射器一样将一个类的实例注入到另一个类的实例中去，需要用什么就注入什么。当然"依赖倒置原则"也始终贯彻在里面。
 
-### 再来看一个例子
+## 再来看一个例子
+
 假设我们这里有一个类，类里面需要用到数据库连接，按照最最原始的办法，我们可能是这样写这个类的
 ```php
 class example {
@@ -170,7 +172,7 @@ $example->setImage(Factory::getImage());//注入Image处理类
 
 依赖注入也是现代PHP框架中广泛使用的思想，著名的Yii,Phalcon等框架中，都能找到依赖注入的影子
 
-> 参考博客
+#### 参考
 > https://mengkang.net/790.html
 > http://www.cnblogs.com/painsOnline/p/5138806.html
 > http://www.thinkphp.cn/topic/12180.html

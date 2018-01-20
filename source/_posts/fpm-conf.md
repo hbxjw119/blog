@@ -2,7 +2,7 @@
 title: php-fpm子进程的数量，是越大越好吗？
 date: 2017-10-11 09:14:35
 tags: [php, fpm]
-category: [php]
+category: [Tech]
 ---
 
 我们知道，在Linux环境下，处理php脚本的进程是`php-fpm`。`php-fpm`的允许方式有两种：

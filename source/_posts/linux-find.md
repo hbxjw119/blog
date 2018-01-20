@@ -2,7 +2,7 @@
 title: linux命令之--find
 date: 2017-11-19 19:14:35
 tags: [linux, find]
-category: [shell]
+category: [Linux]
 ---
 
 `find`命令也是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对`find`命令做个总结，作为备忘
@@ -23,7 +23,7 @@ find path -option [ -print ] [-exec -ok command] {} \;
 
 `-ok` 和`-exec`作用相同，只是会让用户决定是否执行
 
-### 常见用法
+## 常见用法
 
 ```
 # 在家目录中查找.log结尾的文件

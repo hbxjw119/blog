@@ -2,16 +2,16 @@
 title: 手动编译安装nginx
 date: 2017-08-20 19:14:35
 tags: [linux, nginx]
-category: [nginx]
+category: [Tech]
 ---
 
 [Nginx](https://nginx.org/)是一个高性能的HTTP和反向代理服务器，目前已经成为Web开发部署的标配了，基本拿到一台机器或者vps，都要装上nginx，但由于很多Linux发行版的包管理里面的源没有nginx，导致用`yum`或者`apt`都无法安装，需要手动配置，这里记录两种方法安装nginx
 <!--more-->
 
-### 用yum安装
+## 用yum安装
 
 既然基础的包管理中没有nginx，那么我们自己手动添加一个nginx的源，方法如下，（注意，以下是在centOS环境下测试过，其他发行版不保证成功）
-#### 1. 在`/etc/yum.repos.d`目录下，新建一个配置文件nginx.repo，填写如下内容：
+1. 在`/etc/yum.repos.d`目录下，新建一个配置文件nginx.repo，填写如下内容：
 ```bash
 [nginx]
 name=nginx repo
@@ -20,14 +20,14 @@ gpgcheck=0
 enabled=1
 ```
 保存，这样我们就有了nginx的源
-#### 2. 现在可以用yum安装了，执行：
+2. 现在可以用yum安装了，执行：
 ```
 yum -y install nginx
 ```
 喝口水，nginx就已经装好了，用此种方法安装的nginx，在`/usr/sbin/nginx`下，配置在`/etc/nginx/`目录下，且已经加入到系统服务中，要启动，直接执行`service nginx start`即可。
 
 
-### 手动编译安装
+## 手动编译安装
 
 有时候遇到非常蛋疼的场景，公司机器不能上外网，这时候就得手动编译安装了，但你要确保有可以编译的软件源码包，如果这个都没有，又不能下，那洗洗睡吧。
 编译安装nginx需要准备[pcre](http://www.pcre.org/),[zlib](http://www.zlib.net/),[openssl](https://www.openssl.org/source/)库，下完安装包侯，开始安装了，安装的方法，基本都如出一辙

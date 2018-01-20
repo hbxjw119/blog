@@ -2,7 +2,7 @@
 title: 给博客启用https
 date: 2017-12-01 19:14:35
 tags: [https, acme]
-category: [https]
+category: [Tech]
 ---
 
 在几个月前，当博客放到阿里云时，就想尝试下开启https，在尝试之前，我读了几篇启用https的经验文章，发现现在有了很方便的工具：[acme.sh](https://github.com/Neilpang/acme.sh)。基本不用你做太多额外操作，即可开启https。

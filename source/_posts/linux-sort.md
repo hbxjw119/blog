@@ -2,7 +2,7 @@
 title: 求两个文件的交集，并集，差集
 date: 2016-10-11 09:14:35
 tags: [linux, sort]
-category: [shell]
+category: [Linux]
 ---
 
 在linux下，有两个文件，分别记录了很多ip地址，怎么求得在两个文件中都出现的ip？以及所有的不重复的ip？

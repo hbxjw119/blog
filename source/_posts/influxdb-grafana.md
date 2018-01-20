@@ -2,13 +2,14 @@
 title: influxdb配合grafana的监控
 date: 2016-12-21 20:14:35
 tags: [Linux, influxdb, grafana]
-category: [monitor]
+category: [Tech]
 ---
 
 在大型公司，对于监管众多服务器的资源使用情况，是一项不可或缺的工作，随时了解每个服务器的运行状态，负载情况，对于发现线上问题，有着重要的参考价值。对于线上服务，监控和了解集群的工作状况，也是必不可少的环节。在机器监控方面，新兴的influxdb配合grafana，有如倚天屠龙，简单又好用。
 <!--more-->
 
 ## influxdb，grafana简介
+
 influxdb用Go语言编写的一个开源分布式时序、事件和指标数据库，和传统是数据库相比有不少不同的地方。首先它非常适合用于存储基于时序类的数据，这类数据有以下特点：
 
 * 数据量大，基于时序
@@ -28,6 +29,7 @@ influxdb用Go语言编写的一个开源分布式时序、事件和指标数据�
 个人觉得，grafana最大的好处就是，你只需要配置好数据源。不需要写一行代码，即可完成数据可视化。
 
 ## 安装
+
 influxdb和grafana的安装灰常简单，在linux下(CentOS)，只要运行以下命令即可：
 安装influxdb：
 ```
@@ -43,6 +45,7 @@ rpm -ivh grafana-3.1.1-1470047149.x86_64.rpm
 二者安装完毕后，就可以使用啦~
 
 ## 使用
+
 ### influxdb
 
 在使用之前，我们需要对软件简单做下配置，首先配置influxdb，influxdb1.1.1是默认不开启web端口查询的，需要打开，修改配置，在/etc/influxdb/influxdb.conf中，
@@ -79,18 +82,22 @@ influxdb还提供了数据的失效性策略设置。选择一个数据库，命
 
 启动完毕后，在浏览器中输入http://hostname:3000
 即可打开grafana的web页，账号名和密码默认均为admin。由于grafana只是一个读数据并显示数据的工具，因此首先要配置数据源，让它找到数据。在grafana主页面中，按照下图配置即可
-#### 增加数据源，选择influxdb为数据源
+* 增加数据源，选择influxdb为数据源
 ![influxdb-conf](/images/influxdb-grafana/grafana-datasource.jpg)
 ![influxdb-conf](/images/influxdb-grafana/grafana-data-source.png)
 
-#### 数据源连接成功后，就可以开一个dashbord
+* 数据源连接成功后，就可以开一个dashbord
 ![influxdb-conf](/images/influxdb-grafana/grafana-add-dashbord.png)
-#### 填写参数
+
+* 填写参数
 ![influxdb-conf](/images/influxdb-grafana/grafana-graph.png)
-#### 设置刷新时间，这里必须要在quick ranges里选择一个时间长度，如Last 1 hour
+
+* 设置刷新时间，这里必须要在quick ranges里选择一个时间长度，如Last 1 hour
 ![influxdb-conf](/images/influxdb-grafana/grafana-refresh.jpg)
-#### 最后保存
+
+* 最后保存
 ![influxdb-conf](/images/influxdb-grafana/grafana-save.jpg)
+
 例子：
 ![influxdb-conf](/images/influxdb-grafana/grafana-demo.png)
 这里我展示的是本机的cpu和内存消耗情况，数据由[telegraf](https://www.influxdata.com/time-series-platform/telegraf/)采集而来

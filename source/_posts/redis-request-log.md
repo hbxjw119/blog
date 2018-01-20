@@ -2,7 +2,7 @@
 title: 使用monitor命令查看redis请求日志
 date: 2017-12-13 09:14:35
 tags: [redis, monitor]
-category: [redis]
+category: [Tech]
 ---
 
 redis是一个高性能、使用方便的非关系型数据库，我们在使用redis时，基本只需要关注存数据，取数据的功能，即set，get，非常适合用作缓存服务器，降低后端数据库压力。有时，想确认下数据是否是从redis里读的，以及redis是怎么取得数据，这时就可以使用monitor功能了。

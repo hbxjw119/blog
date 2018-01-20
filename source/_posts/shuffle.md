@@ -1,9 +1,9 @@
 ---
 title: 一道面试题：随机洗牌法
 date: 2017-10-15 09:14:35
-tags: [python, algorithm]
+tags: [python, algorithm, 面试]
 mathjax: true
-category: [面试]
+category: [Tech]
 ---
 
 面试时，遇到这么一个问题，觉得比较有意思，可惜我答得不好，特记录下。
@@ -31,7 +31,7 @@ def shuffle(poker_list):
 		poker_list[idx], poker_list[i] = poker_list[i],poker_list[idx]
 ```
 
-### 证明
+## 证明
 
 先考察只有几个元素时的情况：
 1. 当n=1时，一个元素放在一个位置的概率为1 

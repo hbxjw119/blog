@@ -2,7 +2,7 @@
 title: 用PhantomJS抓取js渲染的网页
 date: 2016-08-22 09:14:35
 tags: [python, PhantomJS]
-category: [python]
+category: [Tech]
 ---
 
 在用python抓取网页时，一般情况下，用urllib2，requests等库差不多够用，但是有的页面里的某些div里的元素，是由js动态渲染，或者某些div，是在window页面滑到该区域才开始加载的。对于这种网页，你直接抓取然后审查页面信息，会看到div为空，或者div的内容为”加载中…”。
@@ -11,11 +11,11 @@ category: [python]
 
 selenium是一个可以调用浏览器的自动化测试套件，它提供了一组可以操作浏览器的API，比如模拟用户打开浏览器，填写表单，提交等动作，可以很方便的完成重复的测试工作，而PhantomJS是一个无界面的浏览器，因此在Linux环境下，二者配合起来，就可以很方便的模拟浏览器浏览行为了，也就可以抓取到由JS渲染的页面元素。
 
-### 首先安装PhantomJS
+## 安装PhantomJS
 
 直接在[官网](http://phantomjs.org/download.html)下载安装包
 
-### 安装selenium
+## 安装selenium
 
 ```python
 #确保你的python已经安装了pip包管理器

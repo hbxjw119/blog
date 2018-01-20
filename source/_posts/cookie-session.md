@@ -2,7 +2,7 @@
 title: 关于Cookie和Session的几点问题
 date: 2017-01-11 11:14:35
 tags: [php, Cookie, Session]
-category: [web]
+category: [Tech]
 ---
 
 咱做web开发的，任何时候都少不了要和Cookie以及Session打交道，我们平时主要用他们来实现用户的登陆和用户的信息存储。说到Cookie和Session，我们一般会很简单地想到他们一个是客户端的存储机制，一个是服务器端的存储机制。然而，事实是否真的仅仅是这样的呢？
@@ -15,7 +15,8 @@ category: [web]
 4. 我们发现，使用IE登陆腾讯网后，在同一台机子上使用Firefox打开腾讯的页面，发现已经有了登陆的状态，那么是否说明Cookie可以在不同浏览器之间共享呢？
 5. 如果把别人的Cookie复制到我的电脑上，假设我使用一样的浏览器，那么我是否可以直接登陆别人的账号呢？
 
-### 什么是Cookie？
+## 什么是Cookie？
+
 cookie是存储在客户端的一小段数据，客户端通过HTTP协议和服务器端进行Cookie交互。也就是说，Cookie独立于任何语言存在，无论PHP，JSP，ASP下的Cookie，都是一样的，因为他们都能被JavaScript这种客户端脚本读取到。PHP之类的语言通过发送HTTP指令，通过浏览器等客户端实现对Cookie的操作，其本身是无法设置或操作Cookie的。
 Cookie主要是参照RFC2109标准由客户端实现生成，使用等整个过程，服务器端则参照此标准实现和客户端之间的交互指令。
 我们都知道PHP设置Cookie的函数setcookie()。
@@ -41,7 +42,8 @@ Bool setcookie(string $name[,string $value[,int $expire = 0[,string $path[,strin
 这说明PHP在当前页设置的cookie不是立即生效的，需要等到下一个页面才能生效。这是由于设置在这个页面里的cookie命令由服务器传递给客户端浏览器，需要到下一个页面，即下一次连接，浏览器才能把cookie从机器里取出传递回服务器。但注意JavaScript这类客户端脚本设置的Cookie是立即生效的。
 然后，我们在控制台通过JavaScript获取cookie，我们可以清楚地看到js只能获取到cookie2，这是因为cookie1把httponly设置成了ture，从而屏蔽了js脚本对cookie的读取。
 
-### 我们下面来聊聊cookie的存储机制。
+## 我们下面来聊聊cookie的存储机制。
+
 前面说到，cookie是保存在客户端的一小段数据，那么它究竟保存在哪呢？
 有两种情况，一种是保存在文件中，一种是保存在浏览器内存中。
 对于第一种情况，不同浏览器有不同的管理机制，比如IE保存在每个域名下的文本文件，而Firefox和Chrome在SQLite数据库中进行管理。我们现在分别就第一，第二种情况进行一些讨论。
@@ -55,7 +57,8 @@ Bool setcookie(string $name[,string $value[,int $expire = 0[,string $path[,strin
 再用其他的浏览器，打开cookie管理器，会发现只有缓存文件而没有cookie。现在理解了吧，cookie是由浏览器等客户端完全独立管理的。因为不同浏览器的Cookie管理机制不同，所以cookie不可能在浏览器之间共享。对于第四个问题，其实是因为我们在安装腾讯QQ时自动安装了针对不同浏览器的插件，可以识别已经登陆的QQ号码而自动登陆。朋友们可以试试把QQ完全卸载再从网页登陆腾讯网，哈哈，所以这和Cookie共享是完全没有任何关系的。
 刚刚聊到存在内存中的Cookie，有的朋友可能会问，这不就是Session么？关闭浏览器就失效。
 
-### Session又是什么呢？
+## Session又是什么呢？
+
 从性质上讲，Session即回话，指一种持续性的，双向的连接。对于web而言，Session指用户在浏览某个网站时，从进入网站到浏览器关闭这段时间的会话。所以，Session实际上是一个特定的时间概念。
 
 ### Session是如何工作的呢？

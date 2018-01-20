@@ -2,7 +2,7 @@
 title: linux命令之--grep
 date: 2016-11-16 09:14:35
 tags: [linux, grep]
-category: [shell]
+category: [Linux]
 ---
 
 `grep`命令是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对grep命令做个总结，作为备忘

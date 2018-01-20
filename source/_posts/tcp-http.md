@@ -2,7 +2,7 @@
 title: tcp和http
 date: 2017-09-10 19:14:35
 tags: [tcp, http]
-category: [web]
+category: [Tech]
 ---
 
 在经典的计算机网络ISO七层模型中，最接近用户的，是应用层，其次是传输层。应用层中，HTTP是最重要的协议之一，而TCP，则是传输层中，最重要的协议之一，这里整理下这两个协议的相关知识。

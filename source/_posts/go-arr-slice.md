@@ -2,7 +2,7 @@
 title: Go语言中的数组(array)和切片(slice)
 date: 2017-11-15 15:14:35
 tags: [go]
-category: [go]
+category: [Tech]
 ---
 
 刚开始学习go，里面有两个类型，常常容易让人弄混：array和slice，这里对这两个类型做个总结
