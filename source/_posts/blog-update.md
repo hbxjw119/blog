@@ -28,7 +28,7 @@ date: 2018-01-06 09:14:00
 self_search: true
 ```
 然后，安装搜索插件
-```
+```bash
 npm install hexo-generator-search --save
 ```
 这样，当你每次`hexo g`时，此插件都会在你博客的根目录，生成一个`search.xml`的文件，该插件就是根据此文件来做全文检索的。
@@ -36,7 +36,7 @@ npm install hexo-generator-search --save
 ## 字数统计
 
 如你所见，本博客的每篇文章，都有字数统计，以及阅读时长。也是通过插件方式实现，估计此插件作者应该是受简书启发而开发的。安装插件：
-```
+```bash
 npm install hexo-wordcount --save
 ```
 安装好后，在主题的配置文件`_config.yml`中开启该功能

@@ -281,10 +281,12 @@ div {
         p {
             margin: 0 0 1.234em;
             code {
+				font-family: consolas, Menlo, monospace;
                 display: inline-block;
-                margin: 0 5px;
-                padding: 0 5px;
-                background: #f7f8f8;
+                padding: 0px 3px;
+                background: #eee;
+				border-radius: 3px;
+				color: #555;
             }
             a {
                 color: #01579f;
@@ -322,10 +324,12 @@ div {
                 margin: 0;
             }
             code {
+				font-family: consolas, Menlo, monospace;
                 display: inline-block;
-                margin: 0 5px;
-                padding: 0px 5px;
-                background: #f7f8f8;
+                padding: 0px 3px;
+                background: #eee;
+				border-radius: 3px;
+
             }
             a {
                 color: #01579f;
@@ -475,13 +479,13 @@ div {
 blockquote,.stressed {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 2.5em 0;
-    padding: 0 0 0 50px;
+    margin: 0.5em 0;
+    padding: 0 0 0 30px;
     color: #555;
-    border-left: none;
+	background-color: #f8f8f8;
+    border-left: 5px solid #d2d6d8;
 }
 blockquote::before,.stressed-quote::before {
-    content: "\201C";
     display: block;
     font-family: times;
     font-style: normal;
@@ -863,8 +867,8 @@ pre {
 /* syntax highlight*/
 figure.highlight,
 .codeblock {
-    background:     #f7f8f8;
-    margin:         10px 0;
+    background:     #f8f8f8;
+    margin:         20px 0;
     line-height:    1.1em;
     color:          #333;
     padding-top:    15px;
@@ -880,7 +884,7 @@ figure.highlight,
     .code,
     .tag {
         background-color: inherit;
-        font-family: Menlo, Consolas, monospace;
+        font-family: consolas,Menlo,"Microsoft YaHei",  monospace;
         border:      none;
         padding:     0;
         margin:      0;
@@ -892,6 +896,7 @@ figure.highlight,
     .code {
         vertical-align: top;
     }
+	.gutter {text-align: right;}
     // hide gutter when code is plain text
     &.plain {
         .gutter {

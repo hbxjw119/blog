@@ -42,6 +42,6 @@ category: [Tech]
 * 稳定运行一段时间后，观察 `php-fpm` 的 `status` 里的 `max active processes` 是多少
 * 然后把 `max_children` 配置比它大一些就可以了。
 
-#### 参考：
-https://segmentfault.com/a/1190000004190979
-https://segmentfault.com/a/1190000000630270
+参考：
+>https://segmentfault.com/a/1190000004190979
+>https://segmentfault.com/a/1190000000630270

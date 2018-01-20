@@ -39,32 +39,32 @@ category: [Linux]
 
 ### 常见用法
 
-```
+```bash
 #查找正在运行中的某个进程
 ps aux | grep 'some_process'
 ```
 
-```
+```bash
 #支持正则查找
 ps aux | grep -E '^some_process'
 ```
 
-```
+```bash
 #上面的命令会在结果中，混入grep进程，如果要过滤掉，则加-v参数，查找除之外的所有进程
 ps aux | grep 'some_process' | grep -v 'grep'
 ```
 
-```
+```bash
 #grep还可以在一个目录中，搜索含有某字符的文档，如在当前目录下，查找含有gun字符的文档，并标识出所在的行号
 grep 'gun' . -r -n
 ```
 
-```
+```bash
 #使匹配到的字符高亮，更醒目
 grep 'gun' . -r -n --color=auto
 ```
 
-```
+```bash
 #只在目录中所有的.php和.html文件中递归搜索字符gun
 grep "gun" . -r --include *.{php,html}
 ```

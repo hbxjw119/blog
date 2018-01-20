@@ -24,7 +24,7 @@ OK
 def get_user_info(uuid):
     #如果redis中存在该用户的信息，则直接返回
     if REDIS.exists(uuid):  
-	    return REDIS.get(uuid)
+        return REDIS.get(uuid)
 
     #否则从mysql中取，并在redis中设置该信息
     try:

@@ -25,12 +25,12 @@ find path -option [ -print ] [-exec -ok command] {} \;
 
 ## 常见用法
 
-```
+```bash
 # 在家目录中查找.log结尾的文件
 find ~ -name "*.log"
 ```
 
-```
+```bash
 # 查找5天前的log文件，并显示
 find ~ -mtime +5 -name "*.log" -exec ls -l {} \;
 
@@ -47,7 +47,7 @@ find log/ -type f -mtime -7 -exec rm -f {} \;
 
 注意`find`的时间类型，有三种，分别是`mtime`,即modified time，当对文件进行写入操作时，会改变，它跟踪的是文件中数据的改变；`atime`,即access time, 当对文件读取或被执行时，会改变；`ctime`,即change time，当对文件写入、更改所有者、权限、链接设置时，会改变。我们常常使用的`ls -l`，看的都是`mtime`，要看`atime`,`ctime`，可以分别使用`ls -lu`,`ls -lc`。
 
-```
+```bash
 # 查找大于512k的文件
 find ~ -size +512k
 
@@ -58,7 +58,7 @@ find ~ -size +1M
 find ~ -size +1G -type -f -exec rm -f {} \;
 ```
 
-```
+```bash
 # 查找属于 www 用户的文件
 find /etc -user www
 ```

@@ -52,7 +52,7 @@ if (checkSignature()) {
 ### 1、获得用户输入的城市名
 
 由上图我们知道，用户的输入，最终会由微信后台转发给我们，微信后台转发给我们的数据格式如下
-```
+```xml
 <xml>
  <ToUserName><![CDATA[toUser]]></ToUserName>
  <FromUserName><![CDATA[fromUser]]></FromUserName>

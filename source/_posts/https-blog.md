@@ -19,7 +19,7 @@ acme.sh --reloadcmd "service nginx force-reload"
 如果提示force-reload命令不存在，那么需要更新下nginx的操作脚本。或者直接把`force-reload`换为`restart`，效果是一样的。
 
 这里贴上我的nginx中与https有关的配置
-```
+```nginx
 server {
     listen 80;
     server_name xujimmy.com www.xujimmy.com;

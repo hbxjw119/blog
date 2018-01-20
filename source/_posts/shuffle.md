@@ -25,10 +25,10 @@ category: [Tech]
 import random
 
 def shuffle(poker_list):
-	l = len(poker_list)
-	for i,pk in enumerate(poker_list):
-		idx = random.randint(0,l) % (i + 1)
-		poker_list[idx], poker_list[i] = poker_list[i],poker_list[idx]
+    l = len(poker_list)
+    for i,pk in enumerate(poker_list):
+        idx = random.randint(0,l) % (i + 1)
+        poker_list[idx], poker_list[i] = poker_list[i],poker_list[idx]
 ```
 
 ## 证明
@@ -47,5 +47,5 @@ def shuffle(poker_list):
 当n=k+1,第k+1位置的元素在任k+1个位置的概率是$\frac {1}{k+1}$，因为随机出k+1个数概率是一样的。前k个元素的概率发生了变化，任意一元素保持位置不变的概率为$\frac {1}{k}$ × ($1-\frac {1}{k+1}$),结果为$\frac {1}{k+1}$;任意一元素与第k+1元素进行置换的概率为$\frac {1}{k} × (\sum_{1}^{k}\frac {1}{k}× \frac {1}{k+1})$ ,结果为$\frac {1}{k+1}$,综上，前k个元素在任意位置的概率为$\frac {1}{k+1}$。 
 定理成立，证毕。
 
-#### 参考
-http://blog.csdn.net/crawler_star/article/details/50354276
+参考
+>http://blog.csdn.net/crawler_star/article/details/50354276
