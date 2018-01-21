@@ -260,7 +260,7 @@ div {
     }
     .post-content {
         clear: left;
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1.77;
         color: #444;
         padding-top: 15px;
@@ -283,10 +283,12 @@ div {
             code {
 				font-family: consolas, Menlo, monospace;
                 display: inline-block;
-                padding: 0px 3px;
+                padding: 1px 3px;
+				margin: 0 2px;
                 background: #eee;
-				border-radius: 3px;
+				border-radius: 4px;
 				color: #555;
+				font-size: 90%;
             }
             a {
                 color: #01579f;
@@ -479,11 +481,10 @@ div {
 blockquote,.stressed {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 0.5em 0;
-    padding: 0 0 0 30px;
-    color: #555;
+	margin: 10px 0 0 0;
+	padding: 15px 20px;
+	border-left: 5px solid #ccc;
 	background-color: #f8f8f8;
-    border-left: 5px solid #d2d6d8;
 }
 blockquote::before,.stressed-quote::before {
     display: block;
