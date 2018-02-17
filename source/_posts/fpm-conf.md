@@ -43,5 +43,5 @@ category: [Tech]
 * 然后把 `max_children` 配置比它大一些就可以了。
 
 参考：
->https://segmentfault.com/a/1190000004190979
->https://segmentfault.com/a/1190000000630270
+* https://segmentfault.com/a/1190000004190979
+* https://segmentfault.com/a/1190000000630270

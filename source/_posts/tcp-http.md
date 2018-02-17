@@ -129,6 +129,6 @@ HTTP/1.1 200 OK
 >503 Server Unavailable        //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
 
 参考
->http://blog.csdn.net/hjtl1992/article/details/68944455
->https://jiajunhuang.com/articles/2017_10_14-web_dev_part2.md.html
->《http权威指南》
+* http://blog.csdn.net/hjtl1992/article/details/68944455
+* https://jiajunhuang.com/articles/2017_10_14-web_dev_part2.md.html
+* 《http权威指南》
