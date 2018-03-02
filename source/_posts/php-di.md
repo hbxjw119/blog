@@ -173,6 +173,6 @@ $example->setImage(Factory::getImage());//注入Image处理类
 依赖注入也是现代PHP框架中广泛使用的思想，著名的Yii,Phalcon等框架中，都能找到依赖注入的影子
 
 #### 参考
-> https://mengkang.net/790.html
-> http://www.cnblogs.com/painsOnline/p/5138806.html
-> http://www.thinkphp.cn/topic/12180.html
+* https://mengkang.net/790.html
+* http://www.cnblogs.com/painsOnline/p/5138806.html
+* http://www.thinkphp.cn/topic/12180.html
