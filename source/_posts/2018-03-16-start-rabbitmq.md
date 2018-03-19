@@ -181,12 +181,31 @@ $conn->close();
 
 加入了 rabbitmq 的系统架构，系统的稳定性也同样依赖消息系统。如果消息系统挂了，整个系统也不可用，组建集群是解决方法之一。rabbitmq 组建集群也非常容易。假如有两台机器：srv01，srv02。
 * 分别在两台机器上安装 rabbitmq 并成功启动
-* 为了让两台机器的 rabbit 正常通信，拷贝 srv01 的 erlang cookie 到 srv02，一般在`/var/lib/rabbitmq/.erlang.cookie`，重启 srv02 上的 rabbit 进程，`sudo service rabbitmq-server restart`
-* 停止 srv02 上的 rabbit ：`rabbitmqctl stop_app`
-* 重设 srv02 上的元数据和状态为清空状态：`rabbitmqctl reset`
-* 将 srv02 节点加入到第一个节点：`rabbitmqctl join_cluster rabbit@srv01`
-* 重新启动 srv02 节点的 rabbit：`rabbitmqctl start_app`
-* 查看 rabbit 集群状态：`rabbitmqctl cluster_status`，如果在 nodes 节点信息中，看到有 rabbit@srv01, rabbit@srv02 字样，说明两个节点的集群已经配置完毕。 
+* 为了让两台机器的 rabbit 正常通信，拷贝 srv01 的 erlang cookie 到 srv02，一般在`/var/lib/rabbitmq/.erlang.cookie`，重启 srv02 上的 rabbit 进程
+```bash
+sudo service rabbitmq-server restart
+```
+* 停止 srv02 上的 rabbit
+```bash
+rabbitmqctl stop_app
+```
+* 重设 srv02 上的元数据和状态为清空状态
+```bash
+rabbitmqctl reset
+```
+* 将 srv02 节点加入到第一个节点
+```bash
+rabbitmqctl join_cluster rabbit@srv01
+```
+* 重新启动 srv02 节点的 rabbit
+```bash
+rabbitmqctl start_app
+```
+* 查看 rabbit 集群状态
+```bash
+rabbitmqctl cluster_status
+```
+如果在 nodes 节点信息中，看到有 rabbit@srv01, rabbit@srv02 字样，说明两个节点的集群已经配置完毕。 
 
 ## 总结
 由以上的简单例子可以看出，使用消息队列，可以很方便的将系统解耦，使系统有良好的扩展性。rabbitmq 是一个很简单的消息队列组件。使用和搭建集群也是非常方便的。
