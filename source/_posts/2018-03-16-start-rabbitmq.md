@@ -1,5 +1,5 @@
 ---
-title: RabbitMQ的简单使用
+title: RabbitMQ 的简单使用
 date: 2018-03-16 16:13:18
 tags: [消息队列]
 category: [Tech]
