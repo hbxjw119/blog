@@ -1,11 +1,11 @@
 ---
-title: linux命令之--find
+title: linux 命令之--find
 date: 2017-11-19 19:14:35
 tags: [linux, find]
 category: [Linux]
 ---
 
-`find`命令也是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对`find`命令做个总结，作为备忘
+`find`命令也是 linux 环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对`find`命令做个总结，作为备忘
 <!--more-->
 
 首先看下`find`命令的基本结构

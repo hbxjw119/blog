@@ -1,5 +1,5 @@
 ---
-title: 几条比较好用又经常忘记的shell命令
+title: 几条比较好用又经常忘记的 shell 命令
 date: 2017-01-16 09:14:35
 tags: [linux, shell]
 category: [Linux]

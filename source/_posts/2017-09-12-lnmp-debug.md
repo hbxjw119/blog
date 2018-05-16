@@ -1,5 +1,5 @@
 ---
-title: 由lnmp一键安装脚本所引发的错误
+title: 由 lnmp 一键安装脚本所引发的错误
 date: 2017-09-12 09:14:35
 tags: [linux, php, lnmp]
 category: [Tech]
@@ -9,9 +9,9 @@ category: [Tech]
 <!--more-->
 
 
-我安装好lnmp环境后，启动一个简单的php框架项目时，却报错，错误如下图所示
+我安装好 lnmp 环境后，启动一个简单的 php 框架项目时，却报错，错误如下图所示
 ![报错log](/images/error-log.jpg)
-大意就是web目录被限制，不能访问。查了下php.ini，里面并没有配置`open_basedir`选项，按理说应该没问题。找了很久都没有找到是在哪里配置了这个。最后[grep](http://www.xujimmy.com/blog/2016/11/16/linux-grep.html)了下,发现是在装lnmp时，一键安装脚本自作主张，在两个地方，设置了该配置:
+大意就是 web 目录被限制，不能访问。查了下 php.ini，里面并没有配置`open_basedir`选项，按理说应该没问题。找了很久都没有找到是在哪里配置了这个。最后[grep](http://www.xujimmy.com/blog/2016/11/16/linux-grep.html)了下,发现是在装lnmp时，一键安装脚本自作主张，在两个地方，设置了该配置:
 1. 脚本在web根目录新建了个`.user.ini`的隐藏文件，里面配置了`open_basedir`，如图：
 ![user.ini](/images/user-ini.jpg)
 2. 另外一个是在nginx的fastcgi.conf中，配置了一个变量，如下：

@@ -1,5 +1,5 @@
 ---
-title: 由daemon账户到ssh免密登录的一点思考
+title: 由 daemon 账户到 ssh 免密登录的一点思考
 date: 2016-08-12 09:14:35
 tags: [python, monitor, php]
 category: [Tech]
