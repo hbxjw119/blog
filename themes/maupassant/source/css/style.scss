@@ -279,7 +279,7 @@ div {
             padding: 0 2em;
         }
         p {
-            margin: 0 0 1.234em;
+            margin: 0 0 0em;
             code {
 				font-family: consolas, Menlo, monospace;
                 display: inline-block;
@@ -869,7 +869,7 @@ pre {
 figure.highlight,
 .codeblock {
     background:     #f8f8f8;
-    margin:         20px 0;
+    margin:         5px 0;
     line-height:    1.1em;
     color:          #333;
     padding-top:    15px;

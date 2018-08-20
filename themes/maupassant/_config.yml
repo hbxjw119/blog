@@ -75,6 +75,9 @@ menu:
   - page: about
     directory: about/
     icon: fa-user
+  - page: study
+    directory: study/
+    icon: fa-book
   - page: rss
     directory: atom.xml
     icon: fa-rss
