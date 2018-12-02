@@ -40,13 +40,14 @@ category: [Linux]
 ### 常见用法
 
 ```bash
-#查找正在运行中的某个进程
-ps aux | grep 'some_process'
+#查找正在运行中的某个进程，忽略大小写
+ps aux | grep -i 'some_process'
 ```
 
 ```bash
 #支持正则查找
 ps aux | grep -E '^some_process'
+ps aux | grep -E 'something|otherthing'
 ```
 
 ```bash
@@ -57,6 +58,10 @@ ps aux | grep 'some_process' | grep -v 'grep'
 ```bash
 #grep还可以在一个目录中，搜索含有某字符的文档，如在当前目录下，查找含有gun字符的文档，并标识出所在的行号
 grep 'gun' . -r -n
+```
+```bash
+#查找并打印目标的前后3行
+cat log | grep -B3 -A3 'key' 
 ```
 
 ```bash
