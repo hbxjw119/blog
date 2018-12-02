@@ -125,7 +125,7 @@ public final native boolean compareAndSwapInt(Object var1, long var2, int var4, 
 上述方法最终会调用汇编，生成一条 CPU 指令，不会被打断。从而保证原子性。
 
 
->>如果是 JDK8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好(减少乐观锁的重试次数)。
+>如果是 JDK8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好(减少乐观锁的重试次数)。
 
 
 ### ThreadLocal
@@ -174,7 +174,8 @@ ThreadLocal 内部有一个静态类 ThreadLocalMap，使用到 ThreadLocal 的�
 由于 `Atomic` 是通过 CAS 来实现同步，是一种非阻塞解决并发的方式，不会锁住当前线程，效率高，当然它也会存在 CAS 所带来的 ABA 问题，同时，由于存在重试机制，并发越高，失败重试的次数越多，极大增加 CPU 开销，不适合于竞争非常频繁的场景。
 
 
-参考：
-https://www.cnblogs.com/dolphin0520/p/3920373.html
-https://www.2cto.com/kf/201601/486898.html
-https://emacsist.github.io/2017/07/04/java-%E4%B8%AD-%E7%9A%84-synchronized-%E4%B8%8E-atomic/
+#### 参考：
+
+* https://www.cnblogs.com/dolphin0520/p/3920373.html
+* https://www.2cto.com/kf/201601/486898.html
+* https://emacsist.github.io/2017/07/04/java-%E4%B8%AD-%E7%9A%84-synchronized-%E4%B8%8E-atomic/
