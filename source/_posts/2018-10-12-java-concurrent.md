@@ -5,7 +5,7 @@ tag: [java, 同步]
 category: [Tech]
 ---
 
-说到java中的同步，必然少不了耳熟能详的`synchronized`，`ReentrantLock`，以及可能用过但不怎么常见的`Atomic`，`volatile`，本篇即简单介绍下他们的区别和使用场景。
+说到 java 中的同步，必然少不了耳熟能详的`synchronized`，`ReentrantLock`，以及可能用过但不怎么常见的`Atomic`，`volatile`，本篇即简单介绍下他们的区别和使用场景。
 
 <!--more-->
 ## 三个问题
@@ -52,13 +52,13 @@ public class Sample {
 }
 ```
 
-以上的三个 increment 方法，均是对 count 字段做加 1 操作，哪些可以在并发场景下正确运行？看完这篇文字，相信大家能回答这个问题。
+以上的三个 increment 方法，均是对 count 字段做加 1 操作，哪些可以在并发场景下正确运行？看完这篇文章，相信大家能回答这个问题。
 
 ### synchronized
 
 `synchronized`属于 java 中的关键字，是最常用的锁，也是一种独占锁，或者称为互斥，这意味着，**当你使用`synchronized`关键字对代码进行同步后，如果有多个线程想执行这段代码，这些线程会变成串行**，即如果当前有线程在执行这段代码，其他的线程只能等待。`synchronized`可以保证并发编程中要求的原子性，可见性和有序性。
 
-在内部，`synchronized`采用重入锁 **ReentrantLock + 一个Condition**，因此可以说`synchronized`是 Lock 的简化版，因为一个 Lock 可以对应多个 Condition.
+在内部，`synchronized`是通过获取对象的监视锁，即`monitor`来实现同步，java 中，每个对象都有一个`monitor`，`synchronized`就是在需要同步的代码块前后，引入`monitorenter`和`monitorexit`字节码来实现的，JVM 规定，当`monitor`被占用时，代码块即会处于锁定状态，其他线程无法访问。像`wait/notify`等方法也依赖于`monitor`。
 
 在类的任意位置都可以使用`synchronized`对想要同步的代码进行同步，如类的实例方法，静态方法，实例对象，Class 对象，代码块等。在上例中，我们对 Sample 类的静态方法 increment() 做了同步，锁住的是当前的 Sample 类对应的 class 对象，再来看看`synchronized`在代码中不同位置的使用方法：
 
@@ -102,12 +102,17 @@ public class SyncCounter implements Runnable {
 1. 对变量的写操作不依赖于当前值
 2. 该变量没有包含在具有其他变量的不变式中
 
+### ReentrantLock
+
+上面说的`synchronized`，是一个严格的排它锁，一方面，没有抢到锁的线程，会一直等待锁的释放；另一方面，当锁释放时，所有的线程都会参与争抢。如果我们需要一种遵守“先来后到”规则的公平锁，或者想给那些等待锁的线程一个超时时间，`synchronized`就无法满足需求了，这时可以使用`ReentrantLock`，在基本用法上，`ReentrantLock`和`synchronized`很相似，前者是一个实现了`Lock`接口的可重入锁，因此需要调用 lock() 和 unlock() 来完成锁的申请和释放，重要的是，`ReentrantLock`具备几个`synchronized`没有的高级功能：**等待可中断**，**公平锁**，**绑定多个条件**。而在性能上，二者却基本没有什么差别，`ReentrantLock`甚至比`synchronized`更优一点。
+
+那么是不是说可以抛弃`synchronized`，而只用`ReentrantLock`呢？不然，首先，在使用方式上，`synchronized`更简介紧凑，用户几乎不用关心锁的释放，而`ReentrantLock`在同步结束后，需要显示的调用 unlock()，其次，`synchronized`为许多开发者所熟悉，并且许多程序框架已经使用了它，如果将两种机制混合，既容易使人迷惑，也容易发生错误。因此，除非你有特别的理由，而`synchronized`无法满足，比如上述说的那三点。否则，还是应该优先考虑使用`synchronized`。
 
 ### Atomic
 
-从字面意思来讲，这也是一种原子类型，可以实现同步。在说`Atomic`之前，有必要复习下**CAS**的概念，CAS(compare and swap)，即**比较并交换**，该操作通过将内存中的值与指定数据进行比较，当数值一样时，将内存中的数据替换为新值，这是一种典型的无锁思想，也是大多数 CPU 架构直接支持的原子指令。因此，我们说 CAS 操作是原子性的，是因为 CPU 指令来保证它是原子的，它是由硬件来提供。
+上面提的`synchronized`和`ReentrantLock`，可以认为是阻塞型同步方式，或者说悲观锁。在锁的申请，线程调度和恢复过程中，存在着很大开销。`volatile`虽然是一种更轻量级的同步机制，但如上面所说，它无法保证原子性。有没有一种类似于`volatile`，又能保证原子性的机制呢？**Atomic**类型登场了。从字面意思来讲，就知道这是一种原子类型，可以实现同步。在说`Atomic`之前，有必要复习下**CAS**的概念，CAS(compare and swap)，即**比较并交换**，该操作通过将内存中的值与指定数据进行比较，当数值一样时，将内存中的数据替换为新值，这是一种典型的无锁思想，也是大多数 CPU 架构直接支持的原子指令。因此，我们说 CAS 操作是原子性的，是因为 CPU 指令来保证它是原子的，它是由硬件来提供。
 
-`Atomic`类就是 JVM 中支持 CAS 的一种实现。具体在 `java.util.concurrent.atomic`这个包下，
+`Atomic`类型就是 JVM 中支持 CAS 的一种实现。如`AtomicInteger`,`AtomicLong`等。具体在 `java.util.concurrent.atomic`这个包下
 
 在上述代码中，我们看下 `getAndIncrement()`方法的实现：
 ```java
@@ -138,7 +143,7 @@ public final native boolean compareAndSwapInt(Object var1, long var2, int var4, 
 
 ### ThreadLocal
 
-再来说说`ThreadLocal`，这个类的出现并不是用来解决在多线程并发环境下资源的共享问题的，它和其它两个关键字不一样，其它两个关键字都是从线程外来保证变量的一致性，这样使得多个线程访问的变量具有一致性，可以更好的体现出资源的共享。
+最后我们来说说`ThreadLocal`，其实这个类的出现并不是用来解决在多线程并发环境下资源的共享问题的，它和上面几个同步方式不一样，上面的关键字都是从线程外来保证变量的一致性，这样使得多个线程访问的变量具有一致性，可以更好的体现出资源的共享。
 
 而`ThreadLocal`的设计，并不是解决资源共享的问题，而是用来提供线程内的局部变量，这样每个线程都自己管理自己的局部变量，别的线程操作的数据不会对我产生影响，互不影响，所以不存在解决资源共享这么一说，如果是解决资源共享，那么其它线程操作的结果必然我需要获取到，而`ThreadLocal`则是自己管理自己的，相当于封装在`Thread`内部了，供线程自己管理。来看个例子
 ```java
@@ -180,8 +185,7 @@ threadLocalValue:2
 
 ## 总结
 
-由以上简单分析，我们在做代码同步时，优先考虑使用`synchronized`，如有特殊情况，再做优化。当满足`volatile`的使用条件时，可以用`volatile`，来实现轻量级锁。
-由于 `Atomic` 是通过 CAS 来实现同步，是一种非阻塞解决并发的方式，不会锁住当前线程，效率高，当然它也会存在 CAS 所带来的 ABA 问题，同时，由于存在重试机制，并发越高，失败重试的次数越多，极大增加 CPU 开销，不适合于竞争非常频繁的场景。
+由以上简单分析，我们在做代码同步时，优先考虑使用`synchronized`，如有特殊情况，再做优化，如考虑使用`ReentrantLock`。而当满足`volatile`的使用条件时，可以用`volatile`，来实现轻量级锁。由于 `Atomic` 是通过 CAS 来实现同步，是一种非阻塞解决并发的方式，不会锁住当前线程，效率会更高，当然它也会存在 CAS 所带来的 ABA 问题，另一方面，由于存在重试机制，并发越高，失败重试的次数越多，极大增加 CPU 开销，不适合于竞争非常频繁的场景。
 
 
 #### 参考：
@@ -189,3 +193,4 @@ threadLocalValue:2
 * https://www.cnblogs.com/dolphin0520/p/3920373.html
 * https://www.2cto.com/kf/201601/486898.html
 * https://emacsist.github.io/2017/07/04/java-%E4%B8%AD-%E7%9A%84-synchronized-%E4%B8%8E-atomic/
+* 《java并发编程实战》

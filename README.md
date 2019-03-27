@@ -4,10 +4,15 @@
 https://xujimmy.com
 
 ### 使用方法
-1. git clone https://github.com/hbxjw119/blog.git
-2. ssh-keygen -t rsa
-3. curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-4. sudo apt-get install nodejs
-5. npm install -g hexo-cli
-6. npm install
-7. hexo g && hexo s
+* 安装 Git，已安装的跳过
+	CentOS: `sudo yum install git-core`
+	Ubuntu: `sudo apt-get install git-core`
+* 安装 Node.js，已安装的跳过
+	`wget -qO- https://raw.github.com/creationix/nvm/v0.33.11/install.sh | sh`
+	完成后，重开终端并执行: `nvm install stable`
+* 安装 hexo
+	`npm install -g hexo-cli`
+* clone 项目
+    `git clone https://github.com/hbxjw119/blog.git`
+* `cd blog &&  npm install`
+* `hexo g && hexo s`
