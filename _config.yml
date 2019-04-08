@@ -81,7 +81,7 @@ sitemap:
 deploy:
   type: git
   repository: 
-    coding: git@git.coding.net:zuiye111/zuiye111.coding.me.git
+#    coding: git@git.coding.net:zuiye111/zuiye111.coding.me.git
     github: git@github.com:hbxjw119/hbxjw119.github.io
   branch: master
 
