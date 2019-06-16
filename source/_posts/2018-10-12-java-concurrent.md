@@ -136,7 +136,7 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
 // 第一和第二个参数代表对象的实例以及地址，第三个参数代表期望值，第四个参数代表更新值
 public final native boolean compareAndSwapInt(Object var1, long var2, int var4, int var5);
 ```
-上述方法最终会调用汇编，生成一条 CPU 指令，不会被打断。从而保证原子性。
+注意到上面有个 unsafe，这是 sun.misc.Unsafe 类的实例，在 JDK 的并发包中，很多地方都用到了它，它提供了一些底层操作的能力，它设计出来是给 JDK 中的源码使用的，比如 AQS、ConcurrentHashMap 等，这个 Unsafe 类不是给我们的代码使用的，是给 JDK 源码使用的，在底层它最终会调用汇编，生成一条 CPU 指令，不会被打断。从而保证原子性。
 
 
 >如果是 JDK8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好(减少乐观锁的重试次数)。
