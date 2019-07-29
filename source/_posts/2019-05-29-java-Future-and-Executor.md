@@ -69,7 +69,7 @@ Callable 和 Runnable 的功能类似，但有 3 个不同点：
 
 ## Future 是什么
 
-看了上面的描述，可能有同学还是不太理解 Future 是什么，从字面意来看，它是"将来"，但这太抽象了，事实确实如此，从 Future 的源码来看，它是一个接口，接口就是抽象的，它表示的是一个任务的执行情况。为了帮助理解，我们可以把它和**句柄**做类比，假如我们要对文件或者网络设备进行读写，通常会拿到一个句柄，文件的话，通常是文件句柄，网络的话，通常是 socket，调用句柄的 read 和 write 方法即可对文件或 socket 进行读写，类比过来，Future 就是一个表示**任务的句柄**，通过这个“句柄”，我们可以获得任务的执行情况，以及给任务发送一些指令。用一个简单例子来体会下
+看了上面的描述，可能有同学还是不太理解 Future 是什么，从字面意来看，它是"将来"，但这太抽象了，事实确实如此，从 Future 的源码来看，它是一个接口，接口就是抽象的，它表示的是一个任务的执行情况。为了帮助理解，我们可以把它和**句柄**，或者文件描述符（fd）做类比，假如我们要对文件或者网络设备进行读写，通常会拿到一个句柄，文件的话，通常是文件句柄，网络的话，通常是 socket，调用句柄的 read 和 write 方法即可对文件或 socket 进行读写，类比过来，Future 就是一个表示**任务的句柄**，通过这个“句柄”，我们可以获得任务的执行情况，以及给任务发送一些指令。用一个简单例子来体会下
 ```java
 public class FutureDemo {
     public static void main(String[] args) {
@@ -291,12 +291,14 @@ void solve(Executor e, Collection<Callable<Result>> solvers) throws InterruptedE
 for (int i=0; i<task.size; i++)
 ```
 来迭代的，由于我们对结果的顺序不关心，而且 take 方法是 ExecutorCompletionService 类的，因此不能迭代 Future，而只能迭代个数，Future 个数或者任务个数，所以这里就得小心的处理 take 方法了。如果个数弄错，可能导致队列已经没有任务，但 仍然调用 take，导致一直阻塞。我们可以继承 ExecutorCompletionService，增加一个原子变量属性，每次提交一个任务，变量加 1，最终用这个变量表示任务的个数。
+
 ## 总结
 * Runnable 执行一个不返回结果的任务，Callable 执行一个有返回结果的任务
 * 可以使用 Executors 的静态方法创建线程池，由线程池来执行任务
 * submit 方法用于提交任务，并返回 Future，可以把它当成任务的句柄
 * Future 的 get 是阻塞方法，向 ExecutorService 提交多个任务，最终迭代 Future 时，结果的顺序和任务提交的顺序一致
 * ExecutorCompletionService 的 take 方法可以获取已完成的任务的 Future，是通过将任务结果放入 BlockingQueue 实现
+
 #### 参考
 * https://dzone.com/articles/executorservice-vs
 * https://www.javaspecialists.eu/archive/Issue214.html
