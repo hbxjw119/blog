@@ -1,11 +1,11 @@
 ---
 title: RabbitMQ 的简单使用
 date: 2018-03-16 16:13:18
-tags: [消息队列]
+tags: [消息队列, MQ]
 category: [Tech]
 ---
 
-在高性能，高可用，解耦的系统中，消息队列 ( Message Queue) 组件是少不了的。现在市面是有各种流行的MQ框架，比如 kafka，rabbitmq，roketmq，zeromq等。各个公司为了适应自己业务的发展，有的会自己造轮子，而有的则在开源消息队里的基础上，做了进一步的改造和优化。本文使用 rabbitmq，作为消息队列的入门使用。
+在高性能，高可用，解耦的系统中，消息队列 ( Message Queue) 组件是少不了的。现在市面是有各种流行的 MQ 框架，比如 kafka，rabbitmq，roketmq，zeromq等。各个公司为了适应自己业务的发展，有的会自己造轮子，而有的则在开源消息队里的基础上，做了进一步的改造和优化。本文使用 rabbitmq，作为消息队列的入门使用。
 <!--more-->
 
 ## 什么是消息队列
@@ -177,15 +177,15 @@ $conn->close();
 ```
 很明显，上述中，上传图片服务是生产者，增加用户积分，通知消息两个是消费者。当后续有更多的服务需要加入时，只需要依葫芦画瓢，继续添加到 rabbitmq 中消费即可。而假如某个服务负载较高，需要更多的计算能力，也不必修改代码，只需要启动更多的消费者进程即可，而 rabbitmq 会负责对消息进行分发。
 
-## 组建 rabbitmq 集群
+## 组建 rabbitmq 集群和镜像队列
 
-加入了 rabbitmq 的系统架构，系统的稳定性也同样依赖消息系统。如果消息系统挂了，整个系统也不可用，组建集群是解决方法之一。rabbitmq 组建集群也非常容易。假如有两台机器：srv01，srv02。
+加入了 rabbitmq 的系统架构，系统的稳定性也同样依赖消息队列。如果消息系统挂了，整个系统也不可用，组建集群是解决方法之一。rabbitmq 组建集群也非常容易，假如有两台机器：srv01（192.168.1.10），srv02（192.168.1.11）。
 * 分别在两台机器上安装 rabbitmq 并成功启动
-* 为了让两台机器的 rabbit 正常通信，拷贝 srv01 的 erlang cookie 到 srv02，一般在`/var/lib/rabbitmq/.erlang.cookie`，重启 srv02 上的 rabbit 进程
+* 为了让两台机器的 rabbitmq 正常通信，拷贝 srv01 的 erlang cookie 到 srv02，一般在`/var/lib/rabbitmq/.erlang.cookie`，重启 srv02 上的 rabbitmq 进程
 ```bash
 sudo service rabbitmq-server restart
 ```
-* 停止 srv02 上的 rabbit
+* 停止 srv02 上的 rabbitmq 应用
 ```bash
 rabbitmqctl stop_app
 ```
@@ -193,7 +193,7 @@ rabbitmqctl stop_app
 ```bash
 rabbitmqctl reset
 ```
-* 将 srv02 节点加入到第一个节点
+* 将 srv02 节点加入到第一个节点，**这里需要注意，@ 后面写的是节点的 hostname，但实际 rabbit 是通过 IP 和节点通信的，因此，需要将 hostname 和 IP 做映射，在 srv02 机器上的 /etc/hosts 文件中，追加 192.168.1.10 srv01。 如果直接在 @ 后面写 srv01 的 IP 是无效的**
 ```bash
 rabbitmqctl join_cluster rabbit@srv01
 ```
@@ -201,15 +201,27 @@ rabbitmqctl join_cluster rabbit@srv01
 ```bash
 rabbitmqctl start_app
 ```
-* 查看 rabbit 集群状态
+* 查看 rabbitmq 集群状态
 ```bash
 rabbitmqctl cluster_status
 ```
-如果在 nodes 节点信息中，看到有 rabbit@srv01, rabbit@srv02 字样，说明两个节点的集群已经配置完毕。 
+如果在 nodes 节点信息中，看到有 rabbit@srv01, rabbit@srv02 字样，说明两个节点的集群已经配置完毕。
+
+### 镜像队列
+
+有了 rabbitmq 集群后，消息系统就高可用了吗？并不是，rabbitmq 集群只是一种伪高可用，实际上，集群中的多个节点之间，只会同步元数据，比如 exchange 元数据，queue 元数据等，但并不会同步队列的内容，一般情况下，很少单纯的使用集群模式，而是用镜像队列。这种方式下，每个节点都保存有所有的队列，无论元数据还是 queue 里的消息都会存在于多个实例上，就是说，每个 rabbitmq 节点都有这个 queue 的一个完整镜像，包含 queue 的全部数据。写消息到 queue 的时候，都会自动把消息同步到多个实例的 queue 上，生产环境下，都会用镜像队列模式。
+
+配置镜像队列也不困难，接着上面集群模式，执行一条命令即可
+```bash
+rabbitmqctl set_policy mirror_queue "^" '{"ha-mode":"all","ha-sync-mode":"automatic"}'
+```
+这是给 rabbitmq 增加了一条策略，其中，mirror_queue 是起的名字，可任意，`^`是匹配规则，表示对匹配这些规则的 queue 做操作，操作就是后面的字符串，字符串是 k-v 形式，详细含义，可以参考 rabbitmq [官方链接](https://www.rabbitmq.com/ha.html)
 
 ## 总结
-由以上的简单例子可以看出，使用消息队列，可以很方便的将系统解耦，使系统有良好的扩展性。rabbitmq 是一个很简单的消息队列组件。使用和搭建集群也是非常方便的。
+由以上的简单例子可以看出，使用消息队列，可以很方便的将系统解耦，使系统有良好的扩展性。rabbitmq 是一个高性能的消息队列组件，使用和搭建集群也是非常方便的。
 本文完整的实例代码，可以在[这里](https://github.com/hbxjw119/learnbylearn/tree/master/rabbitmq/php/img-upload)找到。
 
 #### 参考
 * 《RabbitMQ 实战》
+* https://www.rabbitmq.com/ha.html
+* https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md
