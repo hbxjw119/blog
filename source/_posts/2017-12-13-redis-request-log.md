@@ -38,4 +38,5 @@ def get_user_info(uuid):
 首次运行后，对应到 redis 的监控如下，可以看到，redis 里没有找到，然后从 mysql 中查找，并做了 set 操作将信息存起来，再次运行后，发现 redis 里存在，因此直接从 redis 里 get 数据。
 ![redis请求日志](/images/redis-request-log.png)
 可见，monitor 命令可以让我们清楚的看到 redis 是怎么处理每个请求的，这对于调试阶段非常方便。
+
 当然，为了演示，上面只是一个简单的例子，并没有考虑连接性能问题，实际上，使用 monitor 是会降低 redis 的性能的，适合开发调试使用，线上环境应该禁止使用 monitor 命令。上述例子也没有考虑数据更新，比如用户是做一个更新或者删除操作，则相应的也要把 redis 里的信息更新或者直接使缓存失效。
