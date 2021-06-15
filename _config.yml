@@ -86,3 +86,8 @@ deploy:
   branch: master
 
 since: 2015
+
+prism_plugin:
+  mode: 'preprocess' # realtime/preprocess
+  theme: 'default'
+  line_number: false # default false
